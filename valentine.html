@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For You ❤️</title>
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #ff758c, #ff7eb3);
+        font-family: 'Segoe UI', sans-serif;
+        overflow: hidden;
+    }
+
+    .card {
+        background: white;
+        padding: 40px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        position: relative;
+        width: 350px;
+    }
+
+    h1 {
+        color: #ff4d6d;
+    }
+
+    #message {
+        font-size: 18px;
+        color: #555;
+        min-height: 60px;
+        margin-top: 10px;
+    }
+
+    .btn {
+        padding: 12px 25px;
+        font-size: 18px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        margin: 10px;
+        transition: 0.3s;
+    }
+
+    #yes {
+        background: #ff4d6d;
+        color: white;
+    }
+
+    #yes:hover {
+        transform: scale(1.1);
+    }
+
+    #no {
+        background: #ccc;
+        position: fixed;
+    }
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>DEBORA ❤️</h1>
+    <div id="message"></div>
+    <button class="btn" id="yes" onclick="sayYes()">Yes 💖</button>
+    <button class="btn" id="no">No 😅</button>
+</div>
+
+<script>
+
+// 💕 Typewriter
+const text = "Will You Be My Val ❤️";
+let index = 0;
+
+function typeWriter() {
+    if (index < text.length) {
+        document.getElementById("message").innerHTML += text.charAt(index);
+        index++;
+        setTimeout(typeWriter, 40);
+    }
+}
+
+window.onload = typeWriter;
+
+// 🏃‍♂️ Super Running No Button (PC + Phone)
+const noBtn = document.getElementById("no");
+
+function moveButton() {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+}
+
+// Run when mouse gets close (PC)
+document.addEventListener("mousemove", function(e) {
+    const rect = noBtn.getBoundingClientRect();
+    const distance = Math.hypot(
+        e.clientX - (rect.left + rect.width/2),
+        e.clientY - (rect.top + rect.height/2)
+    );
+
+    if (distance < 100) {
+        moveButton();
+    }
+});
+
+// Run when touched (Phone)
+noBtn.addEventListener("touchstart", moveButton);
+noBtn.addEventListener("mouseover", moveButton);
+
+// 💖 Yes Click
+function sayYes() {
+    document.body.innerHTML = `
+        <div style="text-align:center; color:white;">
+            <h1 style="font-size:40px;">Yayyyy debo 😍❤️</h1>
+            <p style="font-size:22px;">You just made me the happiest person alive<br><br> 
+                Thanks for been my valintine ❤️<br><br>
+                loving you is the best thing that has ever happend to me. <br><br>
+                you make my world brighter, and my heart happier than ever. 💕 <br><br>
+               i am so lucky to have you,i love you so much and will always do 💕<br><br>
+                plenty things for you today</p>
+        </div>
+    `;
+}
+
+</script>
+
+</body>
+</html>
